@@ -22,3 +22,7 @@ resource "aws_route_table_association" "public" {
 #             ▼
 #      Internet Gateway
 # =========================================================================
+
+# this association.tf is basically doing "Connect this Public Subnet to this Public Route Table."
+# Private (VPC) : Private = not directly reachable by everyone; access is controlled. 🔐
+# public :Public = has a network path that can allow internet communication, subject to security-group rules. 🌐
