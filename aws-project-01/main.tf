@@ -19,7 +19,7 @@ resource "aws_instance" "web_server" {
   count = 2 # no of instances (EC2)
   ami   = data.aws_ami.amazon_linux.id
   # AMI = Amazon Machine Image (it varies by region)
-  instance_type = "t3.micro"
+  instance_type = var.instance_type
 
   vpc_security_group_ids = [
     aws_security_group.web_security_group.id

@@ -71,3 +71,69 @@ systemctl enable httpd makes apache automatically start when the server reboots
 
 this will create the page ,echo "<h1>Hello from AWS Project 01!</h1>" > /var/www/html/index.html
 
+about the data for Find Amazon Linux AMI automatically
+
+ami = data.aws_ami.amazon_linux.id
+
+we just change the AMI with data.linux it will autofind the AMI number 
+("Terraform, find an appropriate Amazon Linux AMI and give me its ID.")
+
+
+data "aws_ami" "amazon_linux"
+
+"I don't want Terraform to create an AMI. I want Terraform to look up information about an existing AWS resource."
+
+data.aws_ami.amazon_linux.id
+             │
+             └── finds AMI → gets its ID
+                              ↓
+                         EC2 uses it
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<final structure>>>>>>>>>
+                    Internet
+                       │
+                 HTTP :80
+                       │
+              ┌────────▼────────┐
+              │ Security Group  │
+              │   TCP :80 ✅     │
+              └───────┬─────────┘
+                      │
+             ┌────────┴────────┐
+             │                 │
+        ┌────▼─────┐      ┌────▼─────┐
+        │   EC2 1  │      │   EC2 2  │
+        │ t3.micro │      │ t3.micro │
+        │  Apache  │      │  Apache  │
+        └────┬─────┘      └────┬─────┘
+             │                 │
+             ▼                 ▼
+        "Hello..."        "Hello..."
+
+
+i learned for this project01 
+
+
+
+AMI → OS/server image
+instance type → EC2 size
+resource name → Terraform's internal name
+tags → labels/metadata
+Security Group → firewall
+Ingress → incoming traffic
+Egress → outgoing traffic
+CIDR → IP range
+TCP/UDP/ICMP → network protocols
+from_port / to_port → port range
+user_data → startup commands
+data → look up existing AWS information
+count → create multiple instances
+output → expose useful Terraform values
+
+______________________________________________________________________________________________
+
+
+
